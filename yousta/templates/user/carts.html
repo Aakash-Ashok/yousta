@@ -1,0 +1,46 @@
+{% extends 'user/base.html'%}
+{% block body_block%}
+
+
+
+
+<div class="container">
+
+    <table class="table table-striped">
+
+        <tr>
+            <td>Name</td>
+            <td>Material</td>
+            <td>Brand</td>
+            <td>image</td>
+        </tr>
+
+        {%for d in data%}
+        <tr>
+            <td>{{d.Clothvarient}}</td>
+            <td>{{d.date}}</td>
+            <td>{{d.status}}</td>
+            <td>
+                <img src="{{d.image.url}}" alt="" width="50%" height="200px">
+            </td>
+            <!-- <td>
+                <a href="{%url 'cloth-remove' ct.id%}">remove</a>
+                <a href="{% url 'add-varient' ct.id%}">Add Clothvarient</a>
+                <a href="{%url 'cloth-detail' ct.id%}">view</a>
+            </td> -->
+        </tr>
+        {%endfor%}
+
+    </table>
+
+</div>
+
+
+
+
+
+
+
+
+
+{%endblock%}

@@ -1,0 +1,82 @@
+{% extends 'yousta/base.html'%}
+{% block body_block%}
+    
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-4">
+            <div class="card" style="width:100%">
+                <img src="{{cloth.image.url}}" class="card-img-top" alt="..." height="200px">
+                <div class="card-body">
+                  <h5 class="card-title">{{cloth.name}}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">{{cloth.material}}</li>
+                  <li class="list-group-item">{{cloth.brand}}</li>
+                  <li class="list-group-item">{{cloth.category}}</li>
+                </ul>
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+        </div>
+        <div class="col-8 border boredr-dark">
+           <table class="table table-striped">
+            <tr>
+                
+                <td>Price</td>
+                <td>Size</td>
+                <td>color</td>
+            </tr>
+            {%for v in cloth.clothvarients_set.all%}
+
+                <tr>
+                    <td>{{v.price}}</td>
+                    <td>{{v.size}}</td>
+                    <td>{{v.color}}</td>
+                    <td>
+                      <a href="{%url 'update-varient' v.id%}" class="btn btn-outline-info">Edit</a>
+                      <a href="{%url 'remove-varient' v.id%}" class="btn btn-outline-danger">Delete</a>
+                      <a href="{%url 'offer-add' v.id%}"class="btn btn-outline-danger">Add offer</a>
+                    </td>
+                </tr>
+
+            {%endfor%}
+
+           </table>
+        </div>
+
+     
+
+
+
+    </div>
+
+    <div class="row">
+      {%for v in cloth.clothvarients_set.all%}
+          {%for o in v.offers_set.all%}
+            <div class="border p-3">
+
+              <div>
+                size {{o.clothvarient.size}} | color  {{o.clothvarient.color}}
+              </div>
+
+              <div><span>offer price$ {{o.price}}</span></div>
+              <div>start_date : {{o.start_date}}</div>
+              <div>due_date :{{o.due_date}}</div> 
+            <a href="{%url 'remove-offer' o.id%}" class="btn btn-outline-danger">Delete</a>
+
+            </div>
+          {%endfor%}
+
+      {%endfor%}
+
+    </div>
+
+
+
+</div>
+{%endblock%}
+

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            height: 100vh;
+            background-color: #4158D0;
+            background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+
+        }
+
+        .section {
+            width: 40%;
+            height: 80%;
+
+        }
+
+
+
+        .btn-grad {
+            background-image: linear-gradient(to right, #4776E6 0%, #8E54E9 51%, #4776E6 100%);
+            margin: 10px;
+            padding: 10px 45px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;
+            box-shadow: 0 0 20px #eee;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .btn-grad:hover {
+            background-position: right center;
+            /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    {%if messages%}
+    <div class="container d-flex justify-content-center">
+        <div class="w-50" style="height: 100px;">
+
+            <div>
+                {%for m in messages%}
+
+                {%if m.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Holy guacamole!</strong> {{m}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                {%endif%}
+
+
+                {%endfor%}
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    {%endif%}
+
+    <div class="container h-100 d-flex justify-content-center align-items-center">
+
+
+
+        <div class="section rounded-3 bg-white p-5 shadow">
+            <div class="text-center mb-5">
+                <h1 class="fw-bolder">Login</h1>
+            </div>
+            <form action="" method="post">
+                {%csrf_token%}
+                <div class="mb-4">
+                    <label for="" class="form-label">username</label>
+                    <input type="text" placeholder="Type your username"
+                        class="form-control border border-start-0 border-top-0 border-end-0" name="username">
+                </div>
+                <div class="mb-4">
+                    <label for="" class="form-label">password</label>
+                    <input type="text" placeholder="Type your password"
+                        class="form-control border border-start-0 border-top-0 border-end-0" name="password">
+                </div>
+                <div>
+                    <button class="form-control btn-grad rounded-pill" type="submit">Login</button>
+                </div>
+
+                <div class="social-auth d-flex flex-column align-items-center">
+
+                    <div>
+                        <label for="">or SignUpusging</label>
+
+                    </div>
+
+                    <div>
+                        <a href="">fb</a>
+                        <a href="">twitter</a>
+                        <a href="">google</a>
+                    </div>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

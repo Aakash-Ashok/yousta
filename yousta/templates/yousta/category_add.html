@@ -1,0 +1,41 @@
+{%extends 'yousta/base.html'%}
+
+{%block body_block%}
+
+<div class="container d-flex flex-column align-items-center mt-5">
+    <div class="border border-4 p-5">
+     <h1 class="text-center mb-3">Categories</h1>
+     <div class="w-100">
+      <form action="" method="post">
+  
+          {%csrf_token%}
+          {{form.as_p}}
+          <input type="submit" value="add">
+      </form>
+  
+     </div>
+  
+     <div class="mt-5 w-100">
+      <table class="table table-striped">
+          <tr>
+              <td>Name</td>
+              <td>Action</td>
+          </tr>
+          {%for cat in categories%}
+             <tr>
+              <td>{{cat.name}}</td>
+              <td>
+                  <a href="{%url 'remove-category' cat.id%}">delete</a>
+              </td>
+      
+             </tr>
+          {%endfor%}
+      
+      </table>
+     </div>
+  
+    </div>
+ 
+ 
+ </div>
+{%endblock%}
